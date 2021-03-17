@@ -16,16 +16,39 @@ public class Kennel {
     }
 
 
-    public void findByName(String name) {
-
+    public Dog findByName(String name) {
+        for (Dog dog : dogList) {
+            if (dog.getName().contains(name)) {
+                return dog;
+            }
+        }
+        throw new IllegalArgumentException("No dog in the list!");
     }
 
 
-    public void playWith(String bigli, int i) {
+    public void playWith(String name, int hour) {
+        for (Dog dog : dogList) {
+            if (dog.getName().contains(name)) {
+                dog.play(hour);
+            }
+        }
     }
 
 
-    public <E> List<E> getHappyDogNames(int i) {
+    public List<String> getHappyDogNames(int minHappiness) {
+        List<String> happyDogs = new ArrayList<>();
+        for (Dog dog : dogList) {
+            if (dog.getHappiness() > minHappiness) {
+                happyDogs.add(dog.getName());
+            }
+        }
+        return happyDogs;
+    }
+
+    public void feedAll() {
+        for (Dog dog : dogList) {
+            dog.feed();
+        }
     }
 }
 
